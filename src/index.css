@@ -35,6 +35,14 @@
     --text-secondary: 210 12% 40%; /* #65748B */
     --muted: 210 40% 98%; /* Light muted background */
     --muted-foreground: 210 12% 40%; /* #65748B */
+    
+    /* Accent colors */
+    --accent: 20 100% 58%; /* Process Orange */
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive colors */
+    --destructive: 4 90% 58%; /* Error Red */
+    --destructive-foreground: 0 0% 100%;
   }
   
   .dark {
@@ -53,6 +61,15 @@
     --border: 210 16% 20%; /* Dark border */
     --input: 210 16% 20%; /* Dark input */
     --ring: 210 100% 35%; /* Dark mode focus ring */
+    
+    --muted: 210 25% 12%; /* Dark muted background */
+    --muted-foreground: 210 12% 60%; /* Lighter muted text for dark mode */
+    
+    --accent: 20 100% 65%; /* Lighter process orange for dark mode */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 4 90% 65%; /* Lighter error red for dark mode */
+    --destructive-foreground: 0 0% 100%;
   }
 }
 
@@ -101,15 +118,19 @@
 @layer components {
   /* Winbro-specific component styles */
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 rounded-md;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 rounded-md transition-all duration-200 hover:scale-105 hover:shadow-lg;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 h-11 px-8 rounded-md;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 h-11 px-8 rounded-md transition-all duration-200 hover:scale-105;
   }
   
   .btn-outline {
-    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 rounded-md;
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 rounded-md transition-all duration-200 hover:scale-105;
+  }
+  
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-process-orange text-white hover:from-primary/90 hover:to-process-orange/90 h-11 px-8 rounded-md transition-all duration-200 hover:scale-105 hover:shadow-lg;
   }
   
   .card {
@@ -117,7 +138,53 @@
   }
   
   .card-hover {
-    @apply card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-1;
+    @apply card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-1 hover:scale-105;
+  }
+  
+  .card-gradient {
+    @apply card bg-gradient-to-br from-card to-muted/50;
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-process-orange bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-secondary {
+    @apply bg-gradient-to-r from-secondary to-industrial-gray bg-clip-text text-transparent;
+  }
+  
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+  
+  .shimmer::before {
+    content: '';
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    animation: shimmer 2s infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-gradient-x {
+    animation: gradient-x 15s ease infinite;
+  }
+  
+  .animate-gradient-y {
+    animation: gradient-y 15s ease infinite;
+  }
+  
+  .animate-gradient-xy {
+    animation: gradient-xy 15s ease infinite;
   }
 }
 

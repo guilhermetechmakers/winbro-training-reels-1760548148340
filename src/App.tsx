@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import DashboardLayout from "@/components/DashboardLayout";
 
 // Pages
 import LandingPage from "@/pages/LandingPage";
@@ -49,19 +50,21 @@ function App() {
               <Route path="/verify-email" element={<EmailVerificationPage />} />
               
               {/* Protected routes */}
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/videos" element={<VideoLibrary />} />
-              <Route path="/videos/:id" element={<VideoPlayer />} />
-              <Route path="/upload" element={<UploadVideo />} />
-              <Route path="/courses" element={<CourseBuilder />} />
-              <Route path="/courses/:id" element={<CoursePlayer />} />
-              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/dashboard" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
+              <Route path="/videos" element={<DashboardLayout><VideoLibrary /></DashboardLayout>} />
+              <Route path="/videos/:id" element={<DashboardLayout><VideoPlayer /></DashboardLayout>} />
+              <Route path="/upload" element={<DashboardLayout><UploadVideo /></DashboardLayout>} />
+              <Route path="/courses" element={<DashboardLayout><CourseBuilder /></DashboardLayout>} />
+              <Route path="/courses/:id" element={<DashboardLayout><CoursePlayer /></DashboardLayout>} />
+              <Route path="/profile" element={<DashboardLayout><UserProfile /></DashboardLayout>} />
+              <Route path="/analytics" element={<DashboardLayout><Analytics /></DashboardLayout>} />
+              <Route path="/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
               
               {/* Admin routes */}
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/users" element={<UserManagement />} />
-              <Route path="/admin/analytics" element={<Analytics />} />
-              <Route path="/admin/settings" element={<Settings />} />
+              <Route path="/admin" element={<DashboardLayout><AdminDashboard /></DashboardLayout>} />
+              <Route path="/admin/users" element={<DashboardLayout><UserManagement /></DashboardLayout>} />
+              <Route path="/admin/analytics" element={<DashboardLayout><Analytics /></DashboardLayout>} />
+              <Route path="/admin/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
               
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
